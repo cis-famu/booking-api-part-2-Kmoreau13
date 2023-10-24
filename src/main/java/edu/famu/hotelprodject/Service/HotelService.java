@@ -30,7 +30,7 @@ public class HotelService {
         return hotels;
 
     }// checks if doc exist
-    //hotel = new Hotel(document.getString("address"),document.getString("contactInformation"),document.getString("amenities"),document.getString("description"), document.getTimestamp("createdAt"),document.getId(),document.getString("name"),document.getString("rating"));
+
 
     public ArrayList<Hotel> getAllHotels() throws ExecutionException, InterruptedException {
         CollectionReference HotelCollection  = firestore.collection("Hotel");

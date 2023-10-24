@@ -54,7 +54,7 @@ public class RoomService {
 
     }// gets one passenger turns into an object
 
-    public String createNewRoom(Room room) throws ExecutionException, InterruptedException
+    public  String createNewRoom(Room room) throws ExecutionException, InterruptedException
     {
         String roomId = null;
         ApiFuture<DocumentReference> future = firestore.collection("Room").add(room);
