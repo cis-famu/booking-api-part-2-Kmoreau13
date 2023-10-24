@@ -1,13 +1,13 @@
 package edu.famu.hotelprodject.Controller;
 
 
+import edu.famu.hotelprodject.Models.User;
 import edu.famu.hotelprodject.Service.UserService;
 import edu.famu.hotelprodject.Util.ApiResponse;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.concurrent.ExecutionException;
 
 @RestController
 @RequestMapping("/user")
@@ -37,4 +37,19 @@ public class UserController {
             return ResponseEntity.status(500).body(new ApiResponse(false, "An error occurred",null, e.getMessage()));
         }
     }
+
+  /*  @PostMapping
+    public ResponseEntity<ApiResponse> createNewPassenger(User user) {
+        try {
+            return ResponseEntity.ok(new ApiResponse(true, "Success", UserService.createNewUser(user), null));
+        } catch (ExecutionException e) {
+            return ResponseEntity.status(401).body(new ApiResponse(false, "An error occurred", null, e.getMessage()));
+
+        } catch (InterruptedException e) {
+            return ResponseEntity.status(500).body(new ApiResponse(false, "An error occurred", null, e.getMessage()));
+        }
+
+    }
+*/
+
 }

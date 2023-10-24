@@ -17,6 +17,9 @@ public class PaymentInformation {
     private Timestamp expDate;
     private Timestamp createdAt;
 
+    public PaymentInformation(String billingAddress, String cardNumber, Timestamp expDate) {
+    }
+
     public void setCreatedAt( String createdAt) throws ParseException
     {
         this.createdAt = Timestamp.fromProto(Timestamps.parse(createdAt));

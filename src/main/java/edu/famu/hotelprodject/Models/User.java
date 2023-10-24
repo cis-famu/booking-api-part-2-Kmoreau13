@@ -9,6 +9,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.text.ParseException;
+import java.util.ArrayList;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,7 +21,7 @@ public class User {
    private Timestamp createdAt;
    private String email;
    private String name;
-    //private PaymentInformation paymentinfomation;
+   private ArrayList paymentInformation;
    private String phone;
 
     public void setCreatedAt( String createdAt) throws ParseException

@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 
 @Data
 @NoArgsConstructor
@@ -17,17 +18,15 @@ public class Hotel {
 @DocumentId
     private @Nullable String hotelID;
     private String address;
-    private String amenties;
+    private ArrayList amenities;
     private String contactInformation;
     private Timestamp createdAt;
     private String description;
-
     private String name;
     private String rating;
 
     public Hotel(String address, String contactInformation, String description, Timestamp createdAt, String id, String name, String rating) {
     }
-
     public void setCreatedAt(String createdAt) throws ParseException
     {
         this.createdAt = Timestamp.fromProto(Timestamps.parse(createdAt));

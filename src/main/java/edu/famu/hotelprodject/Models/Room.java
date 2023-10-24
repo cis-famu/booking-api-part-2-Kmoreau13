@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 
 @Data
 @NoArgsConstructor
@@ -21,7 +22,7 @@ public class Room {
     private Timestamp createdAt;
     private String description;
     private String hotelID;
-    private String image;
+    private ArrayList image;
     private double price;
     private String roomType;
 
