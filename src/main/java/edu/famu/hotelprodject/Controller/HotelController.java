@@ -40,8 +40,8 @@ public class HotelController {
         }
     }
 
-    @PostMapping
-    public ResponseEntity<ApiResponse> createHotel(@RequestBody Hotel hotel) {
+    @PostMapping("/{createHotel}")
+    public ResponseEntity<ApiResponse> createHotel(@RequestBody Hotel hotel, @PathVariable String createHotel) {
         try {
             return ResponseEntity.ok(new ApiResponse(true, "Success", hotelservice.createNewHotel(hotel), null));
         } catch (ExecutionException e) {

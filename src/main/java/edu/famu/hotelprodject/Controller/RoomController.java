@@ -42,9 +42,10 @@ public class RoomController {
         }
     }
 
-    public ResponseEntity<ApiResponse> createRoom(Room room) {
+    @PostMapping("/{newRoom}")
+    public ResponseEntity<ApiResponse> createRoom(@PathVariable Room newRoom) {
         try {
-            return ResponseEntity.ok(new ApiResponse(true, "Success", roomservice.createNewRoom(room), null));
+            return ResponseEntity.ok(new ApiResponse(true, "Success", roomservice.createNewRoom(newRoom), null));
         } catch (ExecutionException e) {
             return ResponseEntity.status(401).body(new ApiResponse(false, "An error occurred", null, e.getMessage()));
 
@@ -54,7 +55,8 @@ public class RoomController {
 
     }
 
-    public ResponseEntity<ApiResponse> updateRoom(@PathVariable(name = "roomID") String id, @RequestBody Map<String, String> data) {
+    @PostMapping("/room/{roomID}")
+    public ResponseEntity<ApiResponse> updateRoom(@PathVariable(name = "roomID") String id, @RequestBody Map<String, String> data ) {
         try {
             roomservice.updateRoom(id, data);
             return ResponseEntity.ok(new ApiResponse(true, "Room successfully updated", null, null));

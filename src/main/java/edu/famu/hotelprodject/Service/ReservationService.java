@@ -17,7 +17,8 @@ public class ReservationService {
     public ReservationService(){
         this.firestore = FirestoreClient.getFirestore();
     }
-    private Reservation documentSnapshotToBooking(DocumentSnapshot document) throws ExecutionException, InterruptedException, ParseException {
+
+            /* private Reservation documentSnapshotToBooking(DocumentSnapshot document) throws ExecutionException, InterruptedException, ParseException {
         if (document.exists()) {
             Reservation reservation = new Reservation();
             reservation.setReservationCheckIn(document.getString("checkIn"));
@@ -27,8 +28,7 @@ public class ReservationService {
             reservation.setTotal(document.getDouble("total"));
 
 
-
-            /* Retrieve User details
+ Retrieve User details
             DocumentReference userRef = (DocumentReference) document.get("customer");
             if (userRef != null) {
                 DocumentSnapshot passengerSnapshot = userRef.get().get();

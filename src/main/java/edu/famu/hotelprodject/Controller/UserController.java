@@ -39,7 +39,7 @@ public class UserController {
         }
     }
 
-   @PostMapping
+   @PostMapping("/{newUser}")
     public ResponseEntity<ApiResponse> createNewUser(User user) {
         try {
             return ResponseEntity.ok(new ApiResponse(true, "Success", userservice.createNewUser(user), null));
@@ -52,6 +52,7 @@ public class UserController {
 
     }
 
+    @PostMapping("/{updateUser}")
     public ResponseEntity<ApiResponse> updateUser(@PathVariable(name = "userID") String id, @RequestBody Map<String, String> data) {
         try {
             userservice.updateUser(id, data);
