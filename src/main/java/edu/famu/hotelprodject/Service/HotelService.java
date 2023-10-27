@@ -4,8 +4,10 @@ import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
 import edu.famu.hotelprodject.Models.Hotel;
+import edu.famu.hotelprodject.Models.Room;
 import edu.famu.hotelprodject.Models.User;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.DeleteMapping;
 
 import java.util.*;
 import java.util.concurrent.ExecutionException;
@@ -15,6 +17,7 @@ public class HotelService {
 
 
     private final Firestore firestore;
+
     public HotelService()
     {
         this.firestore = FirestoreClient.getFirestore();
@@ -56,6 +59,25 @@ public class HotelService {
 
     }// gets one passenger turns into an object
 
+    public ArrayList<Hotel> getRoomByHotel(String date) throws ExecutionException, InterruptedException {
+
+
+        DocumentReference hotelRef = firestore.collection("Hotel").document(date);
+        Query query = firestore.collection("Hotel")
+                .whereEqualTo("authorId", userRef);
+
+        ApiFuture<QuerySnapshot> future = query.get();
+        List<QueryDocumentSnapshot> documents = future.get().getDocuments();
+
+        ArrayList<Post> posts = documents.size() > 0 ? new ArrayList<>() : null;
+        for(QueryDocumentSnapshot doc : documents)
+        {
+            posts.add(getAllHotel(doc));
+        }
+
+        return posts;
+    }
+
     public String createNewHotel(Hotel hotel) throws ExecutionException, InterruptedException
     {
         String hotelId = null;
@@ -81,6 +103,12 @@ public class HotelService {
         DocumentReference hotelDoc = firestore.collection("Hotel").document(id);
         if(hotelDoc != null)
             hotelDoc.update(formattedValues);
+
+    }
+    @DeleteMapping("/{hotelId}")
+    public void deleteHotel(String hotelId){
+        DocumentReference hotelDoc = firestore.collection("Hotel").document(hotelId);
+        hotelDoc.delete();
     }
 
 }

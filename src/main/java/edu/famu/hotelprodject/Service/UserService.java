@@ -1,6 +1,7 @@
 package edu.famu.hotelprodject.Service;
 
 import com.google.api.core.ApiFuture;
+import com.google.cloud.Timestamp;
 import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
 import edu.famu.hotelprodject.Models.PaymentInformation;
@@ -22,7 +23,7 @@ public class UserService {
         this.firestore = FirestoreClient.getFirestore();
     }
 
-    private static User documentSnapshotToUser(DocumentSnapshot document) throws ExecutionException, InterruptedException {
+    public static User documentSnapshotToUser(DocumentSnapshot document) throws ExecutionException, InterruptedException {
         User user = null;
         if (document.exists()) {
             PaymentInformationService paymentInformationService = new PaymentInformationService();
@@ -56,7 +57,17 @@ public class UserService {
 
     }// gets one passenger turns into an object
 
+
     public  String createNewUser(User user) throws ExecutionException, InterruptedException
+    {
+        String userId = null;
+        ApiFuture<DocumentReference> future = firestore.collection("User").add(user);
+        DocumentReference postRef = future.get();
+        userId = postRef.getId();
+        return userId;
+    }
+
+    public  String createNewReservation(User user) throws ExecutionException, InterruptedException
     {
         String userId = null;
         ApiFuture<DocumentReference> future = firestore.collection("User").add(user);
@@ -82,6 +93,11 @@ public class UserService {
         DocumentReference userDoc = firestore.collection("User").document(id);
         if(userDoc != null)
             userDoc.update(formattedValues);
+    }
+
+    public void deleteUser(String userId){
+        DocumentReference userDoc = firestore.collection("Hotel").document(userId);
+        userDoc.delete();
     }
 
 }

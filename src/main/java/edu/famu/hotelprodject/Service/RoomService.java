@@ -54,6 +54,9 @@ public class RoomService {
 
     }// gets one passenger turns into an object
 
+
+
+
     public  String createNewRoom(Room room) throws ExecutionException, InterruptedException
     {
         String roomId = null;
@@ -79,6 +82,11 @@ public class RoomService {
         DocumentReference roomDoc = firestore.collection("Room").document(id);
         if(roomDoc != null)
             roomDoc .update(formattedValues);
+    }
+
+    public void deleteRoom(String roomId){
+        DocumentReference roomDoc = firestore.collection("Room").document(roomId);
+       roomDoc.delete();
     }
 
 }
