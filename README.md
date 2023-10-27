@@ -40,7 +40,7 @@
  - [x] Create an endpoint that allows the user to sort descending or ascending by the createdAt.
      -  Add this by using a query string (ie, http://localhost:8080/api/v1/product/?sort=asc)
        
- - [ ] Create an endpoint that allows the user to find all hotels with a room available on a specific date. Accept the date as a query parameter (3 points)
+ - [x] Create an endpoint that allows the user to find all hotels with a room available on a specific date. Accept the date as a query parameter (3 points)
     
  - [x] Create a Reservation collection. Note: ReservationDetail is not a collection (3 points)
     
