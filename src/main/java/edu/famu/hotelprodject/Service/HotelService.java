@@ -59,24 +59,6 @@ public class HotelService {
 
     }// gets one passenger turns into an object
 
-    public ArrayList<Hotel> getRoomByHotel(String date) throws ExecutionException, InterruptedException {
-
-
-        DocumentReference hotelRef = firestore.collection("Hotel").document(date);
-        Query query = firestore.collection("Hotel")
-                .whereEqualTo("authorId", userRef);
-
-        ApiFuture<QuerySnapshot> future = query.get();
-        List<QueryDocumentSnapshot> documents = future.get().getDocuments();
-
-        ArrayList<Post> posts = documents.size() > 0 ? new ArrayList<>() : null;
-        for(QueryDocumentSnapshot doc : documents)
-        {
-            posts.add(getAllHotel(doc));
-        }
-
-        return posts;
-    }
 
     public String createNewHotel(Hotel hotel) throws ExecutionException, InterruptedException
     {

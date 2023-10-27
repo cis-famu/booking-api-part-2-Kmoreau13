@@ -3,9 +3,7 @@ package edu.famu.hotelprodject.Service;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
-import edu.famu.hotelprodject.Models.Hotel;
 import edu.famu.hotelprodject.Models.Room;
-import edu.famu.hotelprodject.Models.User;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -29,7 +27,7 @@ public class RoomService {
         }
         return rooms;
     }// checks if doc exist
-    //room = new Room(document.getId(),document.getString("availability"),document.getLong("capacity"),document.getTimestamp("createdAt"), document.getString("description"), document.getString("image"),document.getDouble("price"), document.getString("roomType"));
+
     public ArrayList<Room> getAllRooms() throws ExecutionException, InterruptedException {
         CollectionReference RoomCollection  = firestore.collection("Room");
         ApiFuture<QuerySnapshot> future = RoomCollection.get();
@@ -82,6 +80,25 @@ public class RoomService {
         DocumentReference roomDoc = firestore.collection("Room").document(id);
         if(roomDoc != null)
             roomDoc .update(formattedValues);
+    }
+
+    public ArrayList<ArrayList<Room>> getRoomByHotel(String date) throws ExecutionException, InterruptedException {
+
+
+        DocumentReference roomRef = firestore.collection("Room").document(date);
+        Query query = firestore.collection("Room")
+                .whereEqualTo("date", roomRef);
+
+        ApiFuture<QuerySnapshot> future = query.get();
+        List<QueryDocumentSnapshot> documents = future.get().getDocuments();
+
+        ArrayList<ArrayList<Room>> rooms = documents.size() > 0 ? new ArrayList<>() : null;
+        for(QueryDocumentSnapshot doc : documents)
+        {
+            rooms.add(getAllRooms());
+        }
+
+        return rooms;
     }
 
     public void deleteRoom(String roomId){
