@@ -27,6 +27,12 @@
    |/{hotelId}| Retrieves a specific hotel based on its ID  |
    |/room|	Retrieves all rooms|
    |/{roomID}| Retrieves a specific room  based on its ID  |
+   |/{newUser}| Creates a new user  |
+   |/{updateUser}| Updates user's information|
+   |/{newRoom}| Creates a new room  |
+   |/room/{roomID}| Updates room's information|
+   |/{newHotel}| Creates a new hotel  |
+   |/hotel/{hotelid}| Updates hotel's information|
 
 ## **GIF Walkthrough**
     - https://imgur.com/sojcFg2
@@ -36,9 +42,9 @@
        
  - [x] Create an endpoint that allows the user to find all hotels with a room available on a specific date. Accept the date as a query parameter (3 points)
     
- - [ ] Create an Reservation collection. Note: ReservationDetail is not a collection (3 points)
+ - [x] Create a Reservation collection. Note: ReservationDetail is not a collection (3 points)
     
- - [ ] Create an endpoint thhat allows the user to create a reservation. (2 points)
-     - Add this end point to the table if you create it.
+ - [ ] Create an endpoint that allows the user to create a reservation. (2 points)
+     - Add this endpoint to the table if you create it.
       
 
