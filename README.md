@@ -28,11 +28,16 @@
    |/room|	Retrieves all rooms|
    |/{roomID}| Retrieves a specific room  based on its ID  |
    |/{newUser}| Creates a new user  |
-   |/{updateUser}| Updates user's information|
-   |/{newRoom}| Creates a new room  |
+   |/{userId}| Updates user's information|
+   |/room| Creates a new room  |
    |/room/{roomID}| Updates room's information|
-   |/{newHotel}| Creates a new hotel  |
-   |/hotel/{hotelid}| Updates hotel's information|
+   |/room| Creates a new hotel  |
+   |/hotel/{hotelId}| Updates hotel's information|
+   |/room| Creates a new room  |
+   |/{userId}| Delete user|
+   |/{hotelId}| Delete Hotel  |
+   |/{roomId}| Delete room|
+
 
 ## **GIF Walkthrough**
     - https://imgur.com/sojcFg2
