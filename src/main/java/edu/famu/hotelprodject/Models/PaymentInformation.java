@@ -14,7 +14,7 @@ public class PaymentInformation {
 
     private String billingAddress;
     private String cardNumber;
-    private Timestamp expDate;
+    private String expDate;
     private Timestamp createdAt;
 
     public PaymentInformation(String billingAddress, String cardNumber, Timestamp expDate) {
@@ -25,8 +25,4 @@ public class PaymentInformation {
         this.createdAt = Timestamp.fromProto(Timestamps.parse(createdAt));
     }
 
-    public void setExpDate( String expDate) throws ParseException
-    {
-        this.expDate = Timestamp.fromProto(Timestamps.parse(expDate));
-    }
 }

@@ -39,7 +39,7 @@ public class UserController {
         }
     }
 
-   @PostMapping("/{newUser}")
+   @PostMapping()
     public ResponseEntity<ApiResponse> createNewUser(User user) {
         try {
             return ResponseEntity.ok(new ApiResponse(true, "Success", userservice.createNewUser(user), null));
@@ -52,7 +52,7 @@ public class UserController {
 
     }
 
-    @PostMapping("/{updateUser}")
+    @PostMapping("/{userID}")
     public ResponseEntity<ApiResponse> updateUser(@PathVariable(name = "userID") String id, @RequestBody Map<String, String> data) {
         try {
             userservice.updateUser(id, data);
@@ -61,6 +61,16 @@ public class UserController {
             return ResponseEntity.status(500).body(new ApiResponse(false, "An error occurred", null, e.getMessage()));
         }
 
+    }
+    @DeleteMapping("/{userID}")
+    public ResponseEntity<ApiResponse> deleteUser(@PathVariable(name="userID") String id) {
+        try {
+            userservice.deleteUser(id);
+            return ResponseEntity.ok(new ApiResponse(true, "user successfully deleted", null, null));
+        }
+        catch (Exception e) {
+            return ResponseEntity.status(500).body(new ApiResponse(false, "An error occurred.", null, e.getMessage()));
+        }
     }
 
 }

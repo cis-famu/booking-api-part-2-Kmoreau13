@@ -15,7 +15,7 @@ import java.util.ArrayList;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Hotel {
-@DocumentId
+    @DocumentId
     private @Nullable String hotelID;
     private String address;
     private ArrayList amenities;

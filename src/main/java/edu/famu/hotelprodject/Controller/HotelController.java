@@ -40,8 +40,8 @@ public class HotelController {
         }
     }
 
-    @PostMapping("/{createHotel}")
-    public ResponseEntity<ApiResponse> createHotel(@RequestBody Hotel hotel, @PathVariable String createHotel) {
+    @PostMapping()
+    public ResponseEntity<ApiResponse> createNewHotel( Hotel hotel) {
         try {
             return ResponseEntity.ok(new ApiResponse(true, "Success", hotelservice.createNewHotel(hotel), null));
         } catch (ExecutionException e) {
@@ -52,7 +52,6 @@ public class HotelController {
         }
 
     }
-
 @PostMapping ("/{hotelId}")
     public ResponseEntity<ApiResponse> updateHotel(@PathVariable(name = "hotelId") String id, @RequestBody Map<String, String> data) {
         try {
@@ -62,6 +61,17 @@ public class HotelController {
             return ResponseEntity.status(500).body(new ApiResponse(false, "An error occurred", null, e.getMessage()));
         }
 
+    }
+
+    @DeleteMapping("/{hotelId}")
+    public ResponseEntity<ApiResponse> deleteHotel(@PathVariable(name="hotelId") String id) {
+        try {
+            hotelservice.deleteHotel(id);
+            return ResponseEntity.ok(new ApiResponse(true, "hotel successfully deleted", null, null));
+        }
+        catch (Exception e) {
+            return ResponseEntity.status(500).body(new ApiResponse(false, "An error occurred.", null, e.getMessage()));
+        }
     }
 
 

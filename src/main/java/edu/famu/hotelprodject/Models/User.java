@@ -1,6 +1,7 @@
 package edu.famu.hotelprodject.Models;
 
 import com.google.cloud.Timestamp;
+import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.annotation.DocumentId;
 import com.google.firebase.database.annotations.Nullable;
 import com.google.protobuf.util.Timestamps;
@@ -21,8 +22,8 @@ public class User {
    private Timestamp createdAt;
    private String email;
    private String name;
-   private ArrayList paymentInformation;
    private String phone;
+   private PaymentInformation paymentInformation;
 
     public void setCreatedAt( String createdAt) throws ParseException
     {

@@ -27,8 +27,9 @@ public class UserService {
         User user = null;
         if (document.exists()) {
             PaymentInformationService paymentInformationService = new PaymentInformationService();
-            ArrayList<PaymentInformation> paymentInformation = paymentInformationService.getPaymentInformation((DocumentReference) document.get("paymentInformation"));
-            user = new User(document.getId(), document.getString("address"), document.getTimestamp("createdAt"), document.getString("email"), document.getString("name"),paymentInformation,document.getString("phone") );
+            PaymentInformation paymentInformation = paymentInformationService.getPaymentInformation((DocumentReference) document.get("paymentInformation"));
+            user = new User(document.getId(), document.getString("address"), document.getTimestamp("createdAt"), document.getString("email"), document.getString("name"),document.getString("phone"), paymentInformation);
+
         }
         return user;
     }// checks if doc exist
@@ -96,7 +97,7 @@ public class UserService {
     }
 
     public void deleteUser(String userId){
-        DocumentReference userDoc = firestore.collection("Hotel").document(userId);
+        DocumentReference userDoc = firestore.collection("User").document(userId);
         userDoc.delete();
     }
 

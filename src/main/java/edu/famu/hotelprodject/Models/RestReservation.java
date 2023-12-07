@@ -11,23 +11,23 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class RestReservation extends AReservation{
 
-    private DocumentReference customer;
-    private DocumentReference hotel;
-    private DocumentReference room;
+    private DocumentReference customerRef;
+    private DocumentReference hotelRef;
+    private DocumentReference roomRef;
 
-    public void setCustomer(String customer) {
+    public void setCustomer(String customerRef) {
         // Perform Firebase Firestore query to retrieve DocumentReference for passengerID
-       this.customer = retrieveDocumentReference("User", customer);
+       this.customerRef = retrieveDocumentReference("User", customerRef);
     }
 
-    public void setHotel(String hotel) {
+    public void setHotel(String hotelRef) {
         // Perform Firebase Firestore query to retrieve DocumentReference for passengerID
-        this.hotel = retrieveDocumentReference("Hotel", hotel);
+        this.hotelRef = retrieveDocumentReference("Hotel", hotelRef);
     }
 
-    public void setRoom(String room) {
+    public void setRoom(String roomRef) {
         // Perform Firebase Firestore query to retrieve DocumentReference for passengerID
-        this.room = retrieveDocumentReference("Room", room);
+        this.roomRef = retrieveDocumentReference("Room", roomRef);
     }
 
     private DocumentReference retrieveDocumentReference(String collection, String id) {

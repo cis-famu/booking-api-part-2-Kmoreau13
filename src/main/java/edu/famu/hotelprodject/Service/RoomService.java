@@ -3,6 +3,8 @@ package edu.famu.hotelprodject.Service;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
+import edu.famu.hotelprodject.Models.Hotel;
+import edu.famu.hotelprodject.Models.PaymentInformation;
 import edu.famu.hotelprodject.Models.Room;
 import org.springframework.stereotype.Service;
 
@@ -18,15 +20,16 @@ public class RoomService {
         this.firestore = FirestoreClient.getFirestore();
     }
 
-    private static Room documentSnapshotToUser(DocumentSnapshot document)
-    {
+    private static Room documentSnapshotToUser(DocumentSnapshot document) throws ExecutionException, InterruptedException {
         Room rooms = null;
         if(document.exists()){
+            HotelService hotelService = new HotelService();
+            Hotel hotelID = hotelService.getHotelById(document.getId());
             ArrayList<String> images = (ArrayList<String>) document.get("images");
-            rooms = new Room(document.getId(),document.getString("hotelID"),document.getLong("capacity"),document.getTimestamp("createdAt"),document.getString("description"),document.getString("availability"),images,document.getDouble("price"), document.getString("roomType"));
+            rooms = new Room(document.getId(),document.getString("availability"),document.getLong("capacity"),document.getTimestamp("createdAt"),document.getString("description"),hotelID,images,document.getLong("price"), document.getString("roomType"));
         }
         return rooms;
-    }// checks if doc exist
+    }// checks if doc exist+
 
     public ArrayList<Room> getAllRooms() throws ExecutionException, InterruptedException {
         CollectionReference RoomCollection  = firestore.collection("Room");

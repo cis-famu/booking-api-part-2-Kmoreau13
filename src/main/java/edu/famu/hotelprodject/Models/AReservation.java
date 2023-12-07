@@ -2,6 +2,7 @@ package edu.famu.hotelprodject.Models;
 
 
 import com.google.cloud.Timestamp;
+import com.google.firebase.database.annotations.Nullable;
 import com.google.protobuf.util.Timestamps;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 @NoArgsConstructor
 @AllArgsConstructor
 public abstract class AReservation {
-
+protected @Nullable String reservationID;
 protected Timestamp checkIn;
 protected Timestamp checkOut;
 protected double total;

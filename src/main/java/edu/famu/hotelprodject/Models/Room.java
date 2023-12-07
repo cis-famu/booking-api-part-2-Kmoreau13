@@ -21,7 +21,7 @@ public class Room {
     private long capacity;
     private Timestamp createdAt;
     private String description;
-    private String hotelID;
+    private Hotel hotelID;
     private ArrayList image;
     private double price;
     private String roomType;

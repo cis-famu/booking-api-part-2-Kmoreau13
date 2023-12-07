@@ -28,7 +28,7 @@ public class HotelService {
         Hotel hotels = null;
         if(document.exists()){
             ArrayList<String> amenities = (ArrayList<String>) document.get("amenities");
-            hotels = new Hotel(document.getString("address"),document.getString("contactInformation"),amenities,document.getString("description"),document.getTimestamp("createdAt"),document.getId(),document.getString("name"),document.getString("rating") );
+            hotels = new Hotel(document.getId(),document.getString("address"),amenities,document.getString("contactInformation"),document.getTimestamp("createdAt"),document.getString("description"),document.getString("name"),document.getString("rating") );
         }
         return hotels;
 
@@ -71,8 +71,8 @@ public class HotelService {
 
     public void updateHotel(String id, Map<String,String> updatedValues)
     {
-        String [ ] allowed = {"name","rating", "description","address"};
 
+        String [ ] allowed = {"name","rating", "description","address,contactinformation"};
         List<String> list = Arrays.asList(allowed);
         Map<String,Object> formattedValues = new HashMap<>();
 
